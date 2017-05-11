@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Tower Defense</title>
+</head>
+<body>
+	<div id="game" style="position: relative;float: left;"></div>
+	<script type="text/javascript" src="js/Profiles.js"></script>
+	<script type="text/javascript" src="js/TD.js"></script>
+	<script type="text/javascript" src="js/Map.js"></script>
+	<script type="text/javascript" src="js/Explode.js"></script>
+	<script type="text/javascript" src="js/BlockFactory.js"></script>
+	<script type="text/javascript" src="js/TowerFactory.js"></script>
+	<script type="text/javascript" src="js/WeaponDatabase.js"></script>
+	<script type="text/javascript" src="js/TowerRenderer.js"></script>
+	<script type="text/javascript" src="js/EventManager.js"></script>
+	<script type="text/javascript" src="js/MonsterFactory.js"></script>
+	<script type="text/javascript" src="js/MonsterDatabase.js"></script>
+	<script type="text/javascript" src="js/BulletFactory.js"></script>
+	<script type="text/javascript" src="js/Element.js"></script>
+	<script type="text/javascript" src="js/Utils.js"></script>
+	<script type="text/javascript" src="js/Scene.js"></script>
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			TD.init($('#game'))
+		})
+	</script>
+</body>
+</html>
