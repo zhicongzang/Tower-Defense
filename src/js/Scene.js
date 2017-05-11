@@ -55,7 +55,6 @@ Scene.prototype = {
 	},
 	addElement: function(element) {
 		this.elements[element.sceneLevel].push(element);
-	}
-
+	},
 
 }

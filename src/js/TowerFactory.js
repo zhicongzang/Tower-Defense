@@ -18,7 +18,10 @@ var TowerFactory = {
 		tower.cy = (tower.row + 1/2) * tower.blockSize;
 		tower.type = cfg.towerType != null ? cfg.towerType : "NULL";
 		tower.attributes = WeaponDatabase.getWeaponAttributes(tower.type);
-		tower.range = tower.attributes.range * tower.blockSize;
+
+		tower.level = 0;
+		tower.damage = tower.attributes.damage;
+		tower.range = Math.round(tower.attributes.range * tower.blockSize);
 		tower.delay = Math.round(tower.attributes.delay * Profiles.default_fps);
 
 		tower.target = null;
@@ -51,7 +54,7 @@ var TowerFactory = {
 				ctx.fillStyle = "rgba(255, 128, 128, 0.2)";
 				ctx.strokeStyle = "rgba(255, 128, 128, 0.6)";
 				ctx.beginPath();
-				ctx.arc(this.cx, this.cy, this.attributes["range"] * this.blockSize, 0, Math.PI * 2, true);
+				ctx.arc(this.cx, this.cy, this.range, 0, Math.PI * 2, true);
 				ctx.closePath();
 				ctx.fill();
 				ctx.stroke();
@@ -67,8 +70,12 @@ var TowerFactory = {
 			
 		},
 		onClick: function() {
-			console.log(this.id);
-			this.isSelected = !this.isSelected;
+			if (this.isSelected) {
+				this.upgrade();
+				console.log(this.level);
+			} else {
+				this.isSelected = true;
+			}
 		},
 		setTarget: function(map) {
 			this.target = map.findMonsterInRange(this.cx, this.cy, this.range);
@@ -106,7 +113,7 @@ var TowerFactory = {
 				"color": this.attributes.bulletColor,
 				"size": this.attributes.bulletSize * this.blockSize,
 				"speed": this.attributes.bulletSpeed,
-				"damage": this.attributes.damage
+				"damage": this.damage
 			};
 		},
 		fire: function() {
@@ -117,7 +124,12 @@ var TowerFactory = {
 				this.timer -= 1;
 			}
 		},
-			
+		upgrade: function() {
+			this.level += 1;
+			this.damage = this.attributes.damage + this.level * this.attributes.upgrade.damage;
+			this.range = Math.round((this.attributes.range + this.level * this.attributes.upgrade.range) * this.blockSize);
+			this.delay = Math.round(this.attributes.delay * Profiles.default_fps * this.attributes.upgrade.delay);
+		},	
 		step: function() {
 			if (this.checkTargetIsValid()) {
 				this.updateTube();

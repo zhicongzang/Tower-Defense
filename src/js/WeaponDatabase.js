@@ -19,10 +19,15 @@ var WeaponDatabase = {
 		aimSpeed: Math.PI / 12,
 		delay: 1/3,
 		bulletColor: "#000",
-		bulletSpeed: 32,
-		bulletSize: 1/12,
+		bulletSpeed: 10,
+		bulletSize: 1/24,
 		life: 100,
-		cost: 100
+		cost: 100,
+		upgrade: {
+			damage: 0.5,
+			range: 0.2,
+			delay: 0.9
+		}
 	},
 
 	getWeaponAttributes: function(type) {

@@ -38,6 +38,7 @@ var TD = {
 		MonsterFactory.setup(this.scene);
 		BulletFactory.setup(this.scene, this.eventManager);
 		this.map = new Map({}, this.eventManager);
+		Popup.init(this.scene, this.eventManager);
 		this.start();
 	},
 	start: function() {

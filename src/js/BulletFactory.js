@@ -89,6 +89,23 @@ var BulletFactory = {
 			this.isValid = Utils.positionIsValid(this.cx, this.cy);
 			return this.isValid;
 		},
+		hitTarget: function(monster) {
+			if (this.cx == monster.cx) {
+					this.cy = (monster.cy >= this.cy) ? monster.cy - monster.size - this.size :  monster.cy + monster.size + this.size
+				} else if (this.cy == monster.cy) {
+					this.cx = (monster.cx >= this.cx) ? monster.cx - monster.size - this.size :  monster.cx + monster.size + this.size
+				} else {
+					var dx,dy;
+					var k = (monster.cy - this.cy) / (monster.cx - this.cx);
+					dx = Math.sqrt(Math.pow((monster.size + this.size),2) / (1 + k * k));
+					dx = (monster.cx >= this.cx) ? -dx : dx;
+					dy = k * dx;
+					this.cx = monster.cx + dx;
+					this.cy = monster.cy + dy;
+				}
+				monster.hit(this.damage);
+				this.hit = true;
+		},
 		step: function() {
 			if(this.explode != null) {
 				this.explode.step();

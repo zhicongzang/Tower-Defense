@@ -34,8 +34,8 @@ var Utils = {
     },
 
     positionIsValid: function(x, y) {
-        return (x >= 0 && x <= Profiles.map_col_size * Profiles.getBlockSize() 
-            && y >= 0 && y <= Profiles.map_row_size * Profiles.getBlockSize());
+        return (x >= 0 && x <= Profiles.getBoardWidth() 
+            && y >= 0 && y <= Profiles.getBoardHeight());
     },
     
     generateRndColor: function() {
@@ -67,8 +67,8 @@ var Utils = {
     },
 
     generateRandomPosition: function() {
-        var maxX = Profiles.map_col_size * Profiles.getBlockSize();
-        var maxY = Profiles.map_row_size * Profiles.getBlockSize();
+        var maxX = Profiles.getBoardWidth();
+        var maxY = Profiles.getBoardHeight();
         return {
             "cx": Math.floor(Math.random() * maxX), 
             "cy": Math.floor(Math.random() * maxY)

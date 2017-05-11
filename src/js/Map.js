@@ -231,24 +231,12 @@ Map.prototype = {
 	checkHit: function(bullet) {
 		for (var i in this.monsters) {
 			monster = this.monsters[i];
-			var dis = Math.sqrt(Math.pow(bullet.cx-monster.cx,2)+Math.pow(bullet.cy-monster.cy,2));
-			if ( dis <= monster.size+bullet.size+bullet.speed) {
-				if (bullet.cx == monster.cx) {
-					bullet.cy = (monster.cy >= bullet.cy) ? monster.cy - monster.size - bullet.size :  monster.cy + monster.size + bullet.size
-				} else if (bullet.cy == monster.cy) {
-					bullet.cx = (monster.cx >= bullet.cx) ? monster.cx - monster.size - bullet.size :  monster.cx + monster.size + bullet.size
-				} else {
-					var dx,dy;
-					var k = (monster.cy - bullet.cy) / (monster.cx - bullet.cx);
-					dx = Math.sqrt(Math.pow((monster.size + bullet.size),2) / (1 + k * k));
-					dx = (monster.cx >= bullet.cx) ? -dx : dx;
-					dy = k * dx;
-					bullet.cx = monster.cx + dx;
-					bullet.cy = monster.cy + dy;
+			if(!monster.isDead) {
+				var dis = Math.sqrt(Math.pow(bullet.cx-monster.cx,2)+Math.pow(bullet.cy-monster.cy,2));
+				if ( dis <= monster.size+bullet.size+bullet.speed) {
+					bullet.hitTarget(monster);
+					break;
 				}
-				monster.life -= bullet.damage;
-				bullet.hit = true;
-				break;
 			}
 		}
 	}

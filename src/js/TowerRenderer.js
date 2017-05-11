@@ -1,5 +1,7 @@
 var TowerRenderer = {
 
+	lineWidth: Profiles.getLineWidth(),
+
 	drawTube: function(ctx, px0, py0, px1, py1, len) {
 		var px2, py2, k, delta;
 		if (px0 == px1) {
@@ -36,9 +38,9 @@ var TowerRenderer = {
 		ctx.fill();
 		ctx.stroke();
 
-		ctx.lineWidth = Profiles.line_width * 2;
+		ctx.lineWidth = this.lineWidth * 2;
 		this.drawTube(ctx, tower.cx, tower.cy, tower.tube.cx, tower.tube.cy, tower.blockSize/2);
-		ctx.lineWidth = Profiles.line_width;
+		ctx.lineWidth = this.lineWidth;
 
 		ctx.fillStyle = "#66c";
 		ctx.beginPath();

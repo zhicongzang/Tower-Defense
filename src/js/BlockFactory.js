@@ -81,7 +81,9 @@ var BlockFactory = {
 				return;
 			}
 			if (this.isEmpty()) {
-				this.buildTower("MiniGun");
+				//this.buildTower("MiniGun");
+				Popup.prepare(this.cx, this.cy, [1,2,3,4,5]);
+				Popup.show();
 			}
 		},
 		isEmpty: function() {

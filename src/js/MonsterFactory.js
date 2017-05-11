@@ -115,6 +115,9 @@ var MonsterFactory = {
 			}
 			return true;
 		},
+		hit: function(damage) {
+			this.life = Math.max(0, this.life - damage);
+		},
 		step: function() {
 			if(this.isStuck) return;
 
